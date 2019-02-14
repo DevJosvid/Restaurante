@@ -1,0 +1,79 @@
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Actualizar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor=" let restaurant of restaurants; let i = index">
+      <!-- | paginate: { itemsPerPage: 10, currentPage: p }; let i = index -->
+      <th scope="row">{{i + 1}}</th>
+      <td>{{restaurant.nombre}}</td>
+      <td>{{restaurant.descripcion}}</td>
+      <td>{{restaurant.direccion}}</td>
+      <td>{{restaurant.telefono}}</td>
+      <td><button class="btn btn-success" data-toggle="modal" data-target="#exampleModal" (click)="onSet(restaurant)">Actualizar</button>&nbsp;<button
+          class="btn btn-danger" (click)="onDelete(restaurant._id)">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Restaurante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #cultivoForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="validationTooltipUsername">Nombre</label>
+                <input type="text" class="form-control" id="name" placeholder=" " [(ngModel)]="restaurant.nombre"
+                  [ngModelOptions]="{standalone: true}" autocomplete="off">
+              </div>
+
+              <div class="form-group">
+                <label>Descripción</label>
+                <textarea class="form-control" [(ngModel)]="restaurant.descripcion" rows="3" [ngModelOptions]="{standalone: true}"> </textarea>
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+
+              <div class="form-group">
+                <label for="validationTooltipUsername">Direccion</label>
+                <input type="text" class="form-control" id="name" placeholder="" [(ngModel)]="restaurant.direccion"
+                  [ngModelOptions]="{standalone: true}" autocomplete="off">
+              </div>
+
+
+              <div class="form-group">
+                <label for="validationTooltipUsername">Telefono</label>
+                <input type="text" class="form-control" id="name" placeholder="" [(ngModel)]="restaurant.telefono"
+                  [ngModelOptions]="{standalone: true}" autocomplete="off">
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onUpdate()">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->

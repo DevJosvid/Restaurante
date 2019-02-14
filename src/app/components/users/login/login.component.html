@@ -1,0 +1,27 @@
+<div class="container">
+  <form #usuarioForm="ngForm" (ngSubmit)="onSubmit()" class="form-login">
+
+      <h3 class="form-login-heading">Login</h3>
+      <hr class="colorgraph">
+      
+      <div class="alert alert-primary" style="text-align: center" role="alert">
+          <strong> Bienvenido </strong>
+      </div>
+
+      <input type="email" class="form-control" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}"
+          placeholder="email" />
+      <br>
+      <input type="password" class="form-control" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}"
+          placeholder="Contraseña" />
+      <br>
+      
+      <div *ngIf="status" class="alert alert-danger" role="alert">
+          <strong> {{message}} </strong>
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block" type="Submit">Ingresar</button>
+
+      <!-- {{user.name ? user.name : user.remember_token}} -->
+
+  </form>
+</div>
